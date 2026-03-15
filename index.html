@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ziply – Crea il logo e il brand della tua azienda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --gray: #64748b;
+      --inner-max: 900px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #ffffff;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── INNER CONTAINER (max-width centrato) ─── */
+    .inner {
+      width: 100%;
+      max-width: var(--inner-max);
+      margin: 0 auto;
+      padding: 0 48px;
+      position: relative;
+    }
+    @media (max-width: 768px) { .inner { padding: 0 24px; } }
+    @media (max-width: 480px) { .inner { padding: 0 16px; } }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      width: 100%;
+      background: url('img/herobg.png') center top / 100% auto no-repeat;
+      padding: 28px 0 52px;
+      position: relative;
+      overflow: visible;
+    }
+    @media (max-width: 768px) {
+      .hero {
+        background-size: 100% auto;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero {
+        background-size: 100% auto;
+        padding: 20px 0 40px;
+      }
+    }
+
+    /* Navbar */
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .hero-logo {
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .btn-newsletter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      border-radius: 100px;
+      padding: 9px 10px 9px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-newsletter:hover { background: rgba(255,255,255,0.75); }
+    .btn-newsletter .arrow-circle {
+      width: 30px;
+      height: 30px;
+      background: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .btn-newsletter .arrow-circle svg { width: 13px; height: 13px; }
+
+    /* Badge */
+    .hero-center { text-align: center; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .hero-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Hero headline */
+    .hero-headline {
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--gray);
+      text-align: center;
+      max-width: 400px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    /* Video + annotation wrapper */
+    .video-annotation-wrap {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+
+    /* Annotation anchored top-right of video */
+    .annotation {
+      position: absolute;
+      right: -150px;
+      top: -10px;
+      width: 140px;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      z-index: 10;
+    }
+    .annotation-text {
+      font-size: 12.5px;
+      font-style: italic;
+      color: #1e293b;
+      line-height: 1.4;
+      text-align: right;
+      font-weight: 500;
+    }
+    .annotation-arrow-clip {
+      width: 70px;
+      height: 68px;
+      overflow: hidden;
+      display: block;
+    }
+    .annotation-arrow {
+      width: 70px;
+      height: auto;
+      display: block;
+    }
+    .annotation-arrow.mirrored { transform: scaleX(-1); }
+
+    /* Hide annotation when no space beside video */
+    @media (max-width: 900px) { .annotation { display: none; } }
+
+    /* Video preview */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.2);
+      aspect-ratio: 16/9;
+      cursor: pointer;
+    }
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.12);
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .video-overlay:hover { background: rgba(0,0,0,0.05); }
+    .play-btn {
+      width: 68px;
+      height: 68px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .play-btn:hover { transform: scale(1.08); }
+    .play-btn svg { width: 24px; height: 24px; margin-left: 3px; }
+
+    /* CTA button */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 16px 52px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(37,99,235,0.38);
+    }
+    .btn-cta:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,99,235,0.48);
+    }
+
+    .cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .powered-by img {
+      height: 12px;
+      object-fit: contain;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    /* ─── SECTION: COSA TROVERAI ──────────────────────── */
+    .section-what {
+      background: #ffffff;
+      padding: 80px 0 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--gray);
+      max-width: 400px;
+      margin: 0 auto 48px;
+      line-height: 1.65;
+    }
+
+    /* Features image */
+    .features-img-wrap {
+      width: 100%;
+      background: #ffffff;
+      padding: 0 0 70px;
+    }
+    .features-img {
+      width: 100%;
+      max-width: var(--inner-max);
+      margin: 0 auto;
+      display: block;
+      padding: 0 48px;
+    }
+    @media (max-width: 768px) { .features-img { padding: 0 24px; } }
+    @media (max-width: 480px) { .features-img { padding: 0 16px; } }
+
+    /* ─── SECTION: I NOSTRI STRUMENTI ────────────────────── */
+    .section-tools {
+      background: #ffffff;
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    /* ─── SECTION: APP SCREENSHOT ─────────────────────── */
+    .section-app {
+      background: #ffffff;
+      padding: 70px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-screenshot {
+      width: 100%;
+      max-width: 860px;
+      padding: 0 48px;
+      display: block;
+      border-radius: 0;
+    }
+    @media (max-width: 768px) { .app-screenshot { padding: 0 24px; } }
+    @media (max-width: 480px) { .app-screenshot { padding: 0 16px; } }
+
+    /* ─── SECTION: SECOND CTA ─────────────────────────── */
+    .section-cta2 {
+      background: #ffffff;
+      padding: 70px 24px 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #f8fafc;
+      padding: 40px 24px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-powered {
+      font-size: 11px;
+      color: #94a3b8;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .footer-logo-img {
+      height: 38px;
+      object-fit: contain;
+    }
+
+    /* ─── MOBILE ──────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .hero { padding: 20px 0 40px; }
+      .hero-nav { margin-bottom: 28px; }
+      .btn-newsletter span:not(.arrow-circle) { display: none; }
+      .btn-newsletter { padding: 8px; }
+      .hero-headline { font-size: 32px; }
+      .video-wrap { border-radius: 14px; }
+      .btn-cta { width: 100%; max-width: 340px; font-size: 16px; padding: 15px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="inner">
+
+      <!-- Navbar -->
+      <nav class="hero-nav">
+        <img src="img/logoziply.svg" alt="Ziply" class="hero-logo"/>
+        <a href="https://ziplylearn.gumroad.com/" target="_blank" class="btn-newsletter">
+          Registrati alla newsletter
+          <span class="arrow-circle">
+            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 10L10 2M10 2H4M10 2V8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </nav>
+
+      <!-- Badge + Headline -->
+      <div class="hero-center">
+        <div class="hero-badge">
+          <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="#2563eb" stroke-width="1.5"/>
+            <path d="M5 7.5L7 9.5L10 6" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          La tua #1 scelta per microlearning e tool operativi
+        </div>
+        <h1 class="hero-headline">
+          Crea il logo e il brand della<br/>tua azienda
+        </h1>
+        <p class="hero-sub">
+          Il modo più veloce per creare il logo e il brand della tua azienda.
+        </p>
+      </div>
+
+      <!-- Video + Annotation wrapper -->
+      <div class="video-annotation-wrap">
+
+        <!-- Annotation: anchored top-right of video -->
+        <div class="annotation" aria-hidden="true">
+          <span class="annotation-text">Vedi un'anticipazione<br/>del corso</span>
+          <div class="annotation-arrow-clip">
+            <img src="img/arrow.png" alt="" class="annotation-arrow"/>
+          </div>
+        </div>
+
+        <!-- Video -->
+        <div class="video-wrap" id="videoWrap">
+          <video id="heroVideo" preload="metadata" playsinline>
+            <source src="img/videoprev.mp4" type="video/mp4"/>
+          </video>
+          <div class="video-overlay" id="videoOverlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 4.5L17.5 11L7 17.5V4.5Z" fill="#1e293b"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-wrap">
+        <a href="https://ziplylearn.gumroad.com/l/hkxhy" target="_blank" class="btn-cta">Accedi ora</a>
+        <div class="powered-by">
+          <img src="img/gumroadbunner.svg" alt="Powered by Gumroad"/>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ COSA TROVERAI ════════════════════════════════════ -->
+  <section class="section-what">
+    <div class="inner">
+      <h2 class="section-title">Cosa troverai<br/>all'interno?</h2>
+      <p class="section-sub">
+        Tool gratuiti e micro-lezioni che ti guideranno passo dopo passo nella creazione di un marchio di livello per la tua azienda.
+      </p>
+    </div>
+  </section>
+
+  <!-- Features image -->
+  <div class="features-img-wrap">
+    <img src="img/immagine1.png" alt="Cosa troverai all'interno" class="features-img"/>
+  </div>
+
+  <!-- ═══ I NOSTRI STRUMENTI ════════════════════════════════ -->
+  <section class="section-tools">
+    <div class="inner">
+      <h2 class="section-title">I nostri strumenti</h2>
+      <p class="section-sub">
+        I nostri strumenti semplificano alcuni passaggi del metodo, rendendolo accessibile e facile da usare anche per chi non è esperto di design.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ APP SCREENSHOT ════════════════════════════════════ -->
+  <section class="section-app">
+    <img src="img/immagine2.png" alt="Ziply App Screenshot" class="app-screenshot"/>
+  </section>
+
+  <!-- ═══ SECOND CTA ════════════════════════════════════════ -->
+  <section class="section-cta2">
+    <a href="https://ziplylearn.gumroad.com/l/hkxhy" target="_blank" class="btn-cta">Accedi ora</a>
+    <div class="powered-by">
+      <img src="img/gumroadbunner.svg" alt="Powered by Gumroad"/>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════ -->
+  <footer>
+    <span class="footer-powered">un progetto</span>
+    <img src="img/logoziplyblue.svg" alt="Ziply" class="footer-logo-img"/>
+  </footer>
+
+<script>
+  const video = document.getElementById('heroVideo');
+  const overlay = document.getElementById('videoOverlay');
+  overlay.addEventListener('click', () => {
+    if (video.paused) { video.play(); overlay.style.opacity = '0'; }
+  });
+  video.addEventListener('click', () => {
+    if (!video.paused) { video.pause(); overlay.style.opacity = '1'; }
+  });
+  video.addEventListener('ended', () => { overlay.style.opacity = '1'; });
+</script>
+</body>
+</html>
